@@ -1,0 +1,6 @@
+{
+  "name": "Path to Potential",
+  "description": "Secondary school study tracking, weekly timetable planner, Google Calendar integration, and academic goal analytics for Year 7 to Year 12 students.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Student or teacher account profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 120 },
+        "yearLevel": { "type": "number" },
+        "weeklyGoal": { "type": "number" },
+        "role": { "type": "string", "enum": ["student", "admin"] },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["uid", "name", "email", "yearLevel", "weeklyGoal", "role"]
+    },
+    "Timetable": {
+      "title": "Timetable",
+      "description": "Weekly timetable blocks for Week A or Week B",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "weekType": { "type": "string", "enum": ["A", "B"] },
+        "blocks": { "type": "array" },
+        "updatedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["uid", "weekType", "blocks"]
+    },
+    "StudyLog": {
+      "title": "StudyLog",
+      "description": "Individual study log entry for a student",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "date": { "type": "string", "maxLength": 30 },
+        "subject": { "type": "string", "maxLength": 80 },
+        "durationMinutes": { "type": "number" },
+        "category": { "type": "string", "maxLength": 80 },
+        "weekNumber": { "type": "number" },
+        "termNumber": { "type": "number" },
+        "notes": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["uid", "date", "subject", "durationMinutes", "category", "weekNumber", "termNumber"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of student and teacher user documents"
+    },
+    "/timetable/{timetableId}": {
+      "schema": "Timetable",
+      "description": "Weekly timetable schedule configurations keyed by userId or composite id"
+    },
+    "/studyLogs/{studyLogId}": {
+      "schema": "StudyLog",
+      "description": "Logged study sessions recorded by students"
+    }
+  }
+}
